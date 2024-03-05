@@ -9,6 +9,8 @@ class Category(models.Model):
     
     def __str__(self) -> str:
         return self.name
+    class Meta:
+        verbose_name_plural = 'categories'
     
 # Customers   
 class Customer(models.Model):
