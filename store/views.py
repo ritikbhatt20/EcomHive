@@ -22,15 +22,15 @@ def login_user(request):
         password = request.POST['password']
         # Authenticate
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+        if user is not None:                                    
             login(request, user)
             messages.success(request, "You have been Logged In!")
-            return redirect('home')
+            return redirect('home')                             
         else:
             messages.success(request, "There was an Error Loggin in, please try again...")
             return redirect('login')
     else:
-        return render(request, 'login.html', {})
+        return render(request, 'login.html', {})            
     
 
 def logout_user(request):
@@ -55,3 +55,7 @@ def register_user(request):
         return render(request, 'register.html', {'form': form})
     
     return render(request, 'register.html', {'form': form})   
+
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    return render(request, 'product.html', {'product': product})
