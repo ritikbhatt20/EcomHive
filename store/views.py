@@ -9,7 +9,10 @@ from .forms import SignUpForm
 
 def home(request):
     products = Product.objects.all()
-    return render(request, 'home.html', {'products': products})
+    if request.user.is_authenticated:
+        return render(request, 'home.html', {'products': products})
+    else:
+        return redirect('login')
 
 
 def about(request):
